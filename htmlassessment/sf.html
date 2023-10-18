@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Survey Form</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 80px;
+
+      }
+
+      .survey-container {
+        width: 200px;
+        height: 200px; /* Set the height to match the width to create a square container */
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .survey-form {
+        width: 60%;
+        border: 2px solid #009688; /* Add a border to the form */
+        padding: 20px; /* Add some padding inside the form for better spacing */
+      }
+
+      .survey-form h2 {
+        text-align: center;
+        color: #009688;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      label {
+        font-weight: bold;
+        display: block;
+      }
+
+      input,
+      select {
+        width: 90%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      .gender-label {
+        font-weight: normal;
+        display: inline-block;
+        margin-right: 10px;
+      }
+
+      .submit-button,
+      .reset-button {
+        background-color: #009688;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+        margin-right: 10px;
+        transition: background-color 0.3s;
+      }
+
+      .reset-button {
+        background-color: #ff5733;
+      }
+
+      .submit-button:hover,
+      .reset-button:hover {
+        background-color: #007a6c;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="survey-form">
+      <h2>Customer Survey Form</h2>
+      <form id="surveyForm">
+        <div class="form-group">
+          <label for="firstName">First Name:</label>
+          <input type="text" id="firstName" name="firstName" required />
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name:</label>
+          <input type="text" id="lastName" name="lastName" required />
+        </div>
+        <div class="form-group">
+          <label for="dob">Date of Birth:</label>
+          <input type="date" id="dob" name="dob" required />
+        </div>
+        <div class="form-group">
+          <label for="country">Country:</label>
+          <select id="country" name="country" required>
+            <option value="USA">India</option>
+            <option value="Canada">Canada</option>
+            <option value="UK">USA</option>
+            <option value="UK">Nepal</option>
+            <option value="UK">Japan</option>
+            <option value="UK">China</option>
+            <option value="UK">Other</option>
+            <!-- Add more options as needed -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Gender:</label>
+          <label class="gender-label"
+            ><input type="checkbox" name="gender" value="Male" /> Male</label
+          >
+          <label class="gender-label"
+            ><input type="checkbox" name="gender" value="Female" />
+            Female</label
+          >
+        </div>
+        <div class="form-group">
+          <label for="profession">Profession:</label>
+          <input type="text" id="profession" name="profession" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="mobile">Mobile Number:</label>
+          <input type="tel" id="mobile" name="mobile" required />
+        </div>
+        <div class="form-group">
+          <button type="button" class="submit-button" onclick="submitForm()">
+            Submit
+          </button>
+          <button type="button" class="reset-button" onclick="resetForm()">
+            Reset
+          </button>
+        </div>
+      </form>
+    </div>
+    <script>
+      function submitForm() {
+        const form = document.getElementById("surveyForm");
+        if (form.checkValidity()) {
+          const formData = new FormData(form);
+          let popupContent = "<h2>Survey Response</h2>";
+          formData.forEach((value, key) => {
+            popupContent += `<p><strong>${key}:</strong> ${value}</p>`;
+          });
+
+          const popup = window.open("", "_blank", "width=400, height=300");
+          popup.document.write(popupContent);
+          form.reset();
+        } else {
+          alert("Please fill in all the required fields.");
+        }
+      }
+
+      function resetForm() {
+        const form = document.getElementById("surveyForm");
+        form.reset();
+      }
+    </script>
+  </body>
+</html>
